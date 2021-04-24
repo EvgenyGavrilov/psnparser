@@ -1,0 +1,32 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15
+
+    - name: Run test
+      run: go test -race -coverprofile=coverage.out.tmp -covermode=atomic ./...
+
+    - name: Prepare coverage
+      run: |
+        cat coverage.out.tmp | grep -v "mock_" > coverage.out
+        rm coverage.out.tmp
+
+    - name: Upload coverage to Codecov
+      run: bash <(curl -s https://codecov.io/bash)
+
