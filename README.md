@@ -1,5 +1,8 @@
 # Playstation store parser
 
+[![GitHub Test Badge](https://github.com/EvgenyGavrilov/psnparser/workflows/Go/badge.svg)](https://github.com/EvgenyGavrilov/psnparser/actions)
+[![codecov](https://codecov.io/gh/EvgenyGavrilov/psnparser/branch/main/graph/badge.svg?token=q7Aff5KOjJ)](https://codecov.io/gh/EvgenyGavrilov/psnparser)
+
 Парсинг игр с playstation store.
 
 Вызов функции `Catalog` или `Product` вернет канал, в котором содержаться данные от playstation store
